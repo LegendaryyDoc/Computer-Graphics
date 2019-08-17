@@ -6,6 +6,7 @@ public class FadeOfDeath : MonoBehaviour
 {
     public bool isAlive = true;
     public float fadeSpeed = 1;
+    public float fadeIncrease = 2;
 
     private Renderer rend;
     private Color curColor;
@@ -27,7 +28,7 @@ public class FadeOfDeath : MonoBehaviour
                 curColor.a -= fadeSpeed;
             }
             rend.material.color = curColor;
-            Debug.Log(curColor.a);
+            fadeSpeed = fadeSpeed * fadeIncrease;
         }
     }
 }
