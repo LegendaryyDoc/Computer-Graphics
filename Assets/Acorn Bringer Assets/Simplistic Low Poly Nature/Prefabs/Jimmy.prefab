@@ -230,9 +230,11 @@ GameObject:
   - component: {fileID: 4036406035427534}
   - component: {fileID: 95403825570734714}
   - component: {fileID: 6375601748895953449}
+  - component: {fileID: 7834856674648856525}
+  - component: {fileID: 6381117716387866574}
   m_Layer: 0
   m_Name: Jimmy
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +268,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 112bfd94ecaf1a34ab317c2ac74268de, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -285,6 +287,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myManager: {fileID: 0}
+--- !u!135 &7834856674648856525
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336688621205060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6381117716387866574
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336688621205060}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1442716365703532
 GameObject:
   m_ObjectHideFlags: 0

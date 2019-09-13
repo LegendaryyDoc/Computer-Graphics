@@ -30,9 +30,9 @@ Material:
     m_Floats:
     - _Glossiness: 0
     - _Metallic: 0
-    - _NoiseFrequency: 0.41
-    - _NoiseScale: 0.5
-    - _Tess: 3.91
+    - _NoiseFrequency: 0.76
+    - _NoiseScale: 0.85
+    - _Tess: 8
     m_Colors:
-    - _Color: {r: 0.3758176, g: 0.3962264, b: 0.21867213, a: 1}
+    - _Color: {r: 0.15481804, g: 0.3018868, b: 0.1523674, a: 1}
     - _NoiseOffset: {r: 1.28, g: 0, b: 0, a: 0}

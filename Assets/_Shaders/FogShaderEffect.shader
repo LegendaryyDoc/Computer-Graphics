@@ -4,9 +4,12 @@
     {
 		_MainTex("Texture", 2D) = "white" {}
 		_FogColor("Fog Color", Color) = (1,1,1,1)
+		_Color("Color?", Color) = (1,1,1,1)
 	}
 		SubShader
 	{
+		
+
 		// No culling or depth
 		Cull Off ZWrite Off ZTest Always
 
@@ -45,8 +48,12 @@
 
             sampler2D _MainTex;
 
+			fixed4 _Color;
+
             fixed4 frag (v2f i) : COLOR
             {
+				//return _Color;
+
 				float depthValue = Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos)).r);
 				fixed4 fogColor = _FogColor * depthValue;
 				fixed4 col = tex2Dproj(_MainTex, i.scrPos);

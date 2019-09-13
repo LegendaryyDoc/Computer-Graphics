@@ -7,19 +7,23 @@ public class Flock : MonoBehaviour
     public FlockManager myManager;
 
     private float speed;
-
+    private float rotationSpeed;
+    private float neighbourDistance;
     private bool turning = false;
+    private Vector3 fleeDirection = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
+        rotationSpeed = Random.Range(myManager.minRotationSpeed, myManager.maxRotationSpeed);
+        neighbourDistance = Random.Range(myManager.minNeighbourDistance, myManager.maxNeighbourDistance);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, Vector3.zero) >= myManager.swimLimits)
+        if(Vector3.Distance(transform.position, myManager.goalPos) >= myManager.swimLimits)
         {
             turning = true;
         }
@@ -30,14 +34,16 @@ public class Flock : MonoBehaviour
 
         if(turning)
         {
-            Vector3 direction = Vector3.zero - transform.position;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), myManager.rotationSpeed * Time.deltaTime);
+            Vector3 direction = (myManager.goalPos - transform.position) - fleeDirection * 2;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
 
             speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
+            rotationSpeed = Random.Range(myManager.minRotationSpeed, myManager.maxRotationSpeed);
+            neighbourDistance = Random.Range(myManager.minNeighbourDistance, myManager.maxNeighbourDistance);
         }
         else
         {
-            if (Random.Range(0, 3) < 1)
+            if (Random.Range(0, 1) <= 1)
             {
                 ApplyRules();
             }
@@ -66,7 +72,7 @@ public class Flock : MonoBehaviour
             {
                 nDistance = Vector3.Distance(go.transform.position, this.transform.position);
 
-                if (nDistance <= myManager.neighbourDistance)
+                if (nDistance <= neighbourDistance)
                 {
                     vCenter += go.transform.position;
                     groupSize++;
@@ -87,12 +93,26 @@ public class Flock : MonoBehaviour
             vCenter = vCenter / groupSize + (goalPos - this.transform.position);
             speed = gSpeed / groupSize;
 
-            Vector3 direction = (vCenter + vavoid) - transform.position;
+            Vector3 direction = Vector3.Normalize(((vCenter + vavoid) - transform.position) - (fleeDirection * 2));
             
             if(direction != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), myManager.rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!other.transform.CompareTag("Fish"))
+        {
+            // take the distance of the fish and the incoming unknown object
+            // apply a vector away from the unknown object that will be applied to the fish
+            // the closer the unknown object is to the fish the more force is applied
+            Vector3 heading = other.gameObject.transform.position - gameObject.transform.position; // creates a vector pointing to the object
+            float distance = heading.magnitude; // gets the distance of the vector
+
+            fleeDirection = heading / distance; // normalized heading
         }
     }
 }

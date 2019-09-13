@@ -1,4 +1,4 @@
-﻿Shader "PeerPlay/NewImageEffectShader"
+﻿Shader "PeerPlay/UnderwaterImageEffect"
 {
     Properties
     {

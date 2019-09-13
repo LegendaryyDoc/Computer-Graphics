@@ -34,8 +34,8 @@ Material:
     - _NoiseScale: 1
     - _NoiseSpeed: 1
     - _PixelOffset: 0.005
-    - _Tess: 4
+    - _Tess: 5.4
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _FogColor: {r: 0.042452812, g: 0.46759897, b: 1, a: 1}
+    - _Color: {r: 0.4528302, g: 0.11320755, b: 0.11320755, a: 1}
+    - _FogColor: {r: 0, g: 0.44262314, b: 1, a: 1}
     - _NoiseOffset: {r: 0, g: 0, b: 0, a: 0}
