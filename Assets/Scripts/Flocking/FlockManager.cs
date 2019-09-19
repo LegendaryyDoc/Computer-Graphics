@@ -8,6 +8,7 @@ public class FlockManager : MonoBehaviour
     public int numberOfFish = 10;
     public float swimLimits = 10; // acts as a box that the fish cannot swim out of
     public Vector3 goalPos = Vector3.zero;
+    public float waterHeight = 0;
 
     [HideInInspector]public GameObject[] allFish; // holds all the fish that are in the school
 

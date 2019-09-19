@@ -23,7 +23,7 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, myManager.goalPos) >= myManager.swimLimits)
+        if(Vector3.Distance(transform.position, myManager.goalPos) >= myManager.swimLimits || transform.position.y >= myManager.waterHeight)
         {
             turning = true;
         }
