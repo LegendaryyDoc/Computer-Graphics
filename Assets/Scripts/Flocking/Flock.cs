@@ -15,7 +15,7 @@ public class Flock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(myManager.minSpeed, myManager.maxSpeed);
+        speed = Random.Range(myManager.minSpeed, myManager.maxSpeed); // randomizing for variation
         rotationSpeed = Random.Range(myManager.minRotationSpeed, myManager.maxRotationSpeed);
         neighbourDistance = Random.Range(myManager.minNeighbourDistance, myManager.maxNeighbourDistance);
     }
@@ -23,7 +23,7 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, myManager.goalPos) >= myManager.swimLimits || transform.position.y >= myManager.waterHeight)
+        if(Vector3.Distance(transform.position, myManager.goalPos) >= myManager.swimLimits || transform.position.y >= myManager.waterHeight) // if the fish is heading out of the limits or if it is higher than the water
         {
             turning = true;
         }
@@ -77,7 +77,7 @@ public class Flock : MonoBehaviour
                     vCenter += go.transform.position;
                     groupSize++;
 
-                    if (nDistance < 1.0f)
+                    if (nDistance < 1.0f) // if the distance of the neighbour is less than 1 then avoid colliding with them
                     {
                         vavoid = vavoid + (this.transform.position - go.transform.position);
                     }
@@ -91,7 +91,6 @@ public class Flock : MonoBehaviour
         if(groupSize > 0)
         {
             vCenter = vCenter / groupSize + (goalPos - this.transform.position);
-            speed = gSpeed / groupSize;
 
             Vector3 direction = Vector3.Normalize(((vCenter + vavoid) - transform.position) - (fleeDirection * 2));
             
